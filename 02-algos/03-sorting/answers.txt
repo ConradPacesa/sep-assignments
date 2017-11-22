@@ -1,0 +1,15 @@
+***Sort collection of 50 random ints between 1 and 100***
+       user     system      total        real
+Bucket sort  0.000000   0.000000   0.000000 (  0.000162)
+Heap sort    0.000000   0.000000   0.000000 (  0.000121)
+Quick sort   0.000000   0.000000   0.000000 (  0.000184)
+
+Looking at the bar chart, speculate on why you think some sort algorithms are
+faster than others and provide rationale as to your thought process.
+
+Some sorting algorithms are faster than others because of the number of
+iterations required to sort an array. Heap sort will require O(n log n)
+iterations to sort the array in a worst case scenario. Quick sort and
+Bucket sort would require O(n^2) iterations to sort the array. The reason for
+this difference is due to the different approaches that each algorithm takes
+for sorting the collection. 
