@@ -1,0 +1,152 @@
+1. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+def goodbye_world(n)
+ puts "Goodbye World! #{n}"
+end
+
+The Big-O complexity is O(1) since it the method goodbye_world does only one
+operation, it prints Goodbye Wold and the input.
+
+2. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+def find_largest(collection)
+ largest = collection[0]
+ collection.length.times do |i|
+   if collection[i] >= largest
+     largest = collection[i]
+   end
+ end
+ largest
+end
+
+The Big-O complexity is O(n). It first sets the variable largest equal to
+the first item in the collection, this take O(1) time. Then it iterates through
+the entire collection comparing each element to 'largest'. This takes O(n) time.
+Therefore the complexity of this algorithm is O(n) since we are not concerned
+with constant time operations in this situation.
+
+3. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+def find_largest(collection)
+ largest = collection[0][0]
+ collection.length.times do |i|
+   subcollection = collection[i]
+   subcollection.length.times do |i|
+     if subcollection[i] >= largest
+       largest = subcollection[i]
+     end
+   end
+ end
+ largest
+end
+
+The Big-O complexity is O(n + k) where n is the length of the collection and k
+is the sum of the lengths of the sub collections. The algorithm first sets The
+variable largest to the first item in the first sub collection, which takes O(1)
+time. It then iterates through the collection, which takes O(n) time. On each
+iteration of the collection it iterates through the entire sub collection at
+each element in the collection. This takes k time, where k is the length of the
+subarray.
+
+4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+def numbers(n)
+ if (n == 0)
+   return 0
+ elsif (n == 1)
+   return 1
+ else
+   return numbers(n-1) + numbers(n-2)
+ end
+end
+
+The Big-O complexity is O(2^n). The first if and elsif blocks check if the
+input in the function is 0 or 1, and returns 0 or 1 respectively. This takes
+O(1) time. The final else block calls the numbers method twice, passing in
+n - 1 and n - 2 into each call. The numbers method will call itself twice until
+it reaches a base case of 0 or 1, which means it would call itself twice n - 1
+times. Therefore the runtime is O(2^n).
+
+5. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+def iterative(n)
+ num1 = 0
+ num2 = 1
+
+ i = 0
+ while i < n-1
+   tmp = num1 + num2
+   num1 = num2
+   num2 = tmp
+   i+=1
+ end
+
+ num2
+end
+
+The Big-O complexity is O(n). The first three operations assigns the variables
+num1, num2 and i to numbers, each of which takes O(1) time. The while loop
+iterates from 0 to n - 1, which will take O(n - 1) time, which would simplify
+to O(n) time. Therefore the complexity of this algorithm is O(n).
+
+6. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+def sort(collection, from=0, to=nil)
+ if to == nil
+   # Sort the whole collection, by default
+   to = collection.count - 1
+ end
+
+ if from >= to
+   # Done sorting
+   return
+ end
+
+ # Take a pivot value, at the far left
+ pivot = collection[from]
+
+ # Min and Max pointers
+ min = from
+ max = to
+
+ # Current free slot
+ free = min
+
+ while min < max
+   if free == min # Evaluate collection[max]
+     if collection[max] <= pivot # Smaller than pivot, must move
+       collection[free] = collection[max]
+       min += 1
+       free = max
+     else
+       max -= 1
+     end
+   elsif free == max # Evaluate collection[min]
+     if collection[min] >= pivot # Bigger than pivot, must move
+       collection[free] = collection[min]
+       max -= 1
+       free = min
+     else
+       min += 1
+     end
+   else
+     raise "Inconsistent state"
+   end
+ end
+
+ collection[free] = pivot
+
+ sort collection, from, free - 1
+ sort collection, free + 1, to
+
+ collection
+end
+
+The Big-O complexity is O(n log n). The algorithm picks a point in the array and
+iterates over the entire array, moving items that are lower or higher than the
+pivot to the left and right of the pivot respectively. This takes O(n) time.
+The method then calls itself on the lower half and upper half of the array,
+which was divided in half by the pivot. The function continues to call itself
+recursively until the broken down arrays are of length 1. This will take
+log(n) times, since the array will be split in approximately half by the pivot.
+the total time taken will therefore be O(n log n).  
