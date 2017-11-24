@@ -1,0 +1,22 @@
+Version 1:
+The Big-O time complexity of the code improved algorithm is O(n^2). The first
+improvement is made to the code that combines the arrays. Rather than pushing
+each element from each array to the new array, I assign combined_array variable
+to a flattened array of the args. This speeds up this operation by not having to
+loop through each array or element, but it does not improve the overall
+performance due to the selection sort running at O(n^2).
+
+Version 2:
+The Big-O time complexity of second version is O(n log n). I made the same
+optimization to the combination of the arrays as in the first optimized
+algorithm, improving this portion to O(1). I used a heap sort rather than
+a selection sort for the sorting portion of the algorithm. This runs at an
+O(n log n) complexity, making the overall complexity O(n log n).
+
+Version 3:
+The Big-O time complexity of the third version is O(n log n). I once again used
+a heap sort, which runs at O(n log n) for sorting. I modified the arrays.flatten!
+line to flatten the arrays in place, rather than assigning it to a new variable,
+meaning we do not need to copy it to another place in memory. The space
+complexity of this sorting algorithm is O(1), since the space complexity of
+heap sort is O(1), and we are flattening the array arguments in place. 
