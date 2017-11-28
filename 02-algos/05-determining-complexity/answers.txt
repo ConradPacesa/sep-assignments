@@ -40,13 +40,12 @@ def find_largest(collection)
  largest
 end
 
-The Big-O complexity is O(n + k) where n is the length of the collection and k
-is the sum of the lengths of the sub collections. The algorithm first sets The
-variable largest to the first item in the first sub collection, which takes O(1)
-time. It then iterates through the collection, which takes O(n) time. On each
-iteration of the collection it iterates through the entire sub collection at
-each element in the collection. This takes k time, where k is the length of the
-subarray.
+The Big-O complexity is O(n * k) where n is the length of the collection and
+k is the length of the sub collections. This assumes that all of the sub
+collections are about the same length. The first loop loops through each of
+the collections, doing n work. The second loop loops through each sub collection
+doing k work. The algorithm therefore does k work for each n or n * k work,
+making the complexity O(n * k).
 
 4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
 
@@ -149,4 +148,4 @@ The method then calls itself on the lower half and upper half of the array,
 which was divided in half by the pivot. The function continues to call itself
 recursively until the broken down arrays are of length 1. This will take
 log(n) times, since the array will be split in approximately half by the pivot.
-the total time taken will therefore be O(n log n).  
+the total time taken will therefore be O(n log n).
